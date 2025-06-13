@@ -12,7 +12,7 @@ on:
    workflow_dispatch:
 
    # trabalhos/tarefas dentro do pipeline = jobs 
-   jobs:
+jobs:
      e2e-testes:
 
     # maquina que o job vai executar 
