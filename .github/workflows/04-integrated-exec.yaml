@@ -44,7 +44,7 @@ jobs:
         run: yarn
 
       - name: Executando testes de unidade
-        run: yarn tests
+        run: yarn test
 
 
   e2e-tests:
