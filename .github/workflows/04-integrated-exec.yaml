@@ -30,6 +30,7 @@ jobs:
 
   unidade:
     runs-on: ubuntu-latest
+    needs: [inspecao]
 
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +46,7 @@ jobs:
 
   e2e-tests:
     runs-on: ubuntu-latest
+    needs: [inspecao]
 
     steps:
       # clone do projeto
@@ -80,6 +82,7 @@ jobs:
   deploy:
     # máquina que o job vai executar
     runs-on: ubuntu-latest
+    needs: [e2e-tests]
 
     steps:
       - name: Simulação do deploy
