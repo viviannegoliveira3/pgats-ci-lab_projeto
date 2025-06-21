@@ -22,7 +22,7 @@ jobs:
 
     # condicional - if
     # `${ expressao}`
-    # == comparação 
+    # == comparação
 
     if: ${{github.event.workflow_run.conclusion == 'success'}}
 
@@ -51,7 +51,7 @@ jobs:
       # executar os testes e2e
       - name: Executando Testes E2E
         run: yarn run e2e
-      
+
       # always() significa que o passo será executado mesmo se o job falhar
       # ou se for cancelado cancelled(), garantindo que o relatório de testes seja sempre enviado
       # sucess() significa que o passo só será executado se o job for bem-sucedido
