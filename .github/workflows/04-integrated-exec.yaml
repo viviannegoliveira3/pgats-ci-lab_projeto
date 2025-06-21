@@ -32,7 +32,7 @@ jobs:
 
 
   unidade:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps: 
       - uses: actions/checkout@v4
@@ -48,7 +48,7 @@ jobs:
 
 
   e2e-tests:
-     run-on: ubuntu-latest
+     runs-on: ubuntu-latest
 
      steps:
       # clone do projeto
