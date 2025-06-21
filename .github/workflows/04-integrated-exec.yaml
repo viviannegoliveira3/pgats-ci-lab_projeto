@@ -1,33 +1,56 @@
-# CI de Nivel 03 - Disparo após a conclusão de um pipeline
+
+# CI de Nivel 04 - Disparo dos testes dentro do pipe de dev
 
 # nome do nosso 'pipeline'
 
-name: 'Execução por Deploy'
+name: 'Execução Integrada'
 
 # regras de disparo (gatilhos/triggers)
 # gatilho de execução manual = workflow_dispatch
 # gatilho de execução agendada = schedule
 # gatilho de execução a partir de outro pipe = workflow_run
 on:
-  workflow_run:
-    workflows: ['Execução Manual']
-    types:
-      - completed
+  workflow_dispatch:
+   
 
 # trabalhos/tarefas dentro do pipeline = jobs
 jobs:
-  e2e-testes:
-    # máquina que o job vai executar
+  inspecao:
     runs-on: ubuntu-latest
 
-    # condicional - if
-    # `${ expressao}`
-    # == comparação 
+    steps: 
+      - uses: actions/checkout@v4
 
-    if: ${{github.event.workflow_run.conclusion == 'success'}}
+      - name: Instalando Yarn
+        run: npm install -g yarn
 
-    # passos do script de build
-    steps:
+      - name: Instalando dependências
+        run: yarn
+
+      - name: Checando padronizacao do codigo
+        run: yarn lint
+
+
+  unidade:
+    run-on: ubuntu-latest
+
+    steps: 
+      - uses: actions/checkout@v4
+
+      - name: Instalando Yarn
+        run: npm install -g yarn
+
+      - name: Instalando dependências
+        run: yarn
+
+      - name: Executando testes de unidade
+        run: yarn tests
+
+
+  e2e-tests:
+     run-on: ubuntu-latest
+
+     steps:
       # clone do projeto
       - uses: actions/checkout@v4
 
@@ -46,17 +69,26 @@ jobs:
 
       # instalação do Playwright
       - name: Instalando Playwright
-        run: yarn playwright install
+        run: yarn playwright install 
 
       # executar os testes e2e
       - name: Executando Testes E2E
         run: yarn run e2e
-      
-      # always() significa que o passo será executado mesmo se o job falhar
-      # ou se for cancelado cancelled(), garantindo que o relatório de testes seja sempre enviado
-      # sucess() significa que o passo só será executado se o job for bem-sucedido
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled()}}
         with:
           name: relatorio
           path: ./playwright-report
+
+
+
+  deploy:
+    # máquina que o job vai executar
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Simulação do deploy
+      run: echo "Simulando o deploy com sucesso" 
+
+   
