@@ -9,7 +9,7 @@ name: 'Testes de Execucação Manual'
 # gatilho de execução manual = workflow_dispatch
 on:
   workflow_dispatch:
-    run: c:\Users\vivia\projects\Projects 2 (2)\Projects 2\trabalho.js
+
 
 # trabalhos/tarefas dentro do pipeline = jobs
 jobs:
@@ -41,7 +41,7 @@ jobs:
 
       # executar os testes e2e
       - name: Executando Testes E2E
-        run: yarn run e2e
+        run: c:\Users\vivia\projects\Projects 2 (2)\Projects 2\trabalho.js
      
       
 
