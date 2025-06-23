@@ -9,6 +9,7 @@ name: 'Testes de Execucação Manual'
 # gatilho de execução manual = workflow_dispatch
 on:
   workflow_dispatch:
+    run: c:\Users\vivia\projects\Projects 2 (2)\Projects 2\trabalho.js
 
 # trabalhos/tarefas dentro do pipeline = jobs
 jobs:
