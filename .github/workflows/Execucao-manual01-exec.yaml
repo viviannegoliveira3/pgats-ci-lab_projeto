@@ -41,6 +41,6 @@ jobs:
 
       # executar os testes e2e
       - name: Executando Testes E2E
-        run: yarn run e2e 
+        run: yarn run e2e "trabalho-final.js"
       
 
