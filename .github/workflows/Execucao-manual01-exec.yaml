@@ -41,6 +41,9 @@ jobs:
 
       # executar os testes e2e
       - name: Executando Testes E2E
-        run: yarn run e2e "trabalho-final.js"
+        run: yarn run e2e 
+
+        name: Executar testes de unidade
+        run: npm test "c:\Users\vivia\projects\Projects 2.2\Projects 2\trabalho\trabalho-final.js"
       
 
